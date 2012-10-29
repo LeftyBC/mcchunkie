@@ -41,6 +41,8 @@ Plugin Features
 * **qw** - Tell the story of Wq.
 * **yeah** - when bot sees "CSI" it puts on sunglasses.. waits 5 seconds.. 
   says YEAAAAAH!
+* **regex** - expands regex corrections in-channel.
+* **seen** - keeps track of when a nick was last around.
 * **template** - quick plugin template for next gen templates.
 
 Writing Plugins
