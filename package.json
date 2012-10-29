@@ -11,7 +11,7 @@
   "dependencies": {
     "optimist": "~0.3.4",
     "nconf": "~0.5.1",
-    "sqlite3": "~3.7.11",
+    "sqlite3": "~2.1.5",
     "redis": "~0.7.2",
     "classifier": "~0.1.0",
     "irc": "~0.3.4",
