@@ -41,7 +41,6 @@ author: Colin Moller <colin@lefty.tv>
 
     } else {
         sh_store.lastmessage = msg;
-        console.log('last message now: ' + sh_store.lastmessage);
     }
 
     cb.call( null, to, from, resp );
