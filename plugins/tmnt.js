@@ -13,7 +13,7 @@
     "SHREDDER!"
   ];
 
-  if ( helper.isRelevant( msg ) && msg.indexOf( 'tmnt' ) > -1 ) {
+  if (msg.match(/^\@tmnt/)) {
     resp = phrases[ Math.floor( Math.random() * phrases.length ) ];
   }
 
