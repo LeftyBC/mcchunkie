@@ -47,6 +47,14 @@ function loadStorage( fn ) {
   });
 }
 
+function saveStorage( fn ) {
+    var serializedData = JSON.stringify( storage.shared );
+    fs.writeFile( storage_file, serializedData );
+    if ( fn ) {
+        fn.call();
+    }
+}
+
 loadStorage();
 
 rclient.on( 'message', function( channel, data ) {
@@ -181,6 +189,7 @@ loadPlugins( plugins, true );
 loadPlugins( messages, false );
 
 fs.watch( plugins, function( e, file ) {
+  console.log('reloading plugins');
   loadPlugins( plugins, true );
   loadPlugins( messages, false );
 });

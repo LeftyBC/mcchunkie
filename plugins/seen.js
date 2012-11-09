@@ -4,8 +4,8 @@
     find_target,
     now = new Date().getTime();
 
-  if ( ! sh_store.seen_nicks ) {
-    sh_store.seen_nicks = [];
+  if ( typeof sh_store.seen_nicks != "object" ) {
+   sh_store.seen_nicks = {};
     console.log('initializing the seen-nicks database');
   }
 
@@ -33,7 +33,8 @@
 
   } else {
     // this is a regular message, just log the nick
-    sh_store.seen_nicks[from.toLowerCase()] = { nick: from, date: now, message: msg };
+      sh_store.seen_nicks[from.toLowerCase()] = { nick: from, date: now, message: msg };
+      saveStorage();
   }
 
 });

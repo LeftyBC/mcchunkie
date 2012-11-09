@@ -36,11 +36,13 @@ author: Colin Moller <colin@lefty.tv>
 
         var re = new RegExp(find,"g");
         finalmsg = sh_store.lastmessage.replace(re, repl);
+        saveStorage();
 
         resp = finalmsg + '';
 
     } else {
         sh_store.lastmessage = msg;
+        saveStorage();
     }
 
     cb.call( null, to, from, resp );
