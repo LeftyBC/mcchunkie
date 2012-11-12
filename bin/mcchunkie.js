@@ -49,7 +49,7 @@ function loadStorage( fn ) {
 
 function saveStorage( fn ) {
     var serializedData = JSON.stringify( storage.shared );
-    fs.writeFile( storage_file, serializedData );
+    fs.writeFileSync( storage_file, serializedData );
     if ( fn ) {
         fn.call();
     }
