@@ -8,18 +8,19 @@ does not yet support chaining regexes like lazylopez does
 author: Colin Moller <colin@lefty.tv>
 
 */
+
 (function( helper, to, from, msg, store, sh_store, cb ) {
 	'use strict';
 	var resp;
 
-    if (!sh_store.lastmessage) {
-        sh_store.lastmessage = '';
+    if (!store.lastmessage) {
+        store.lastmessage = '';
     }
 
     if (msg.match(/^s\//)) {
         var matches = msg.split('/');
 
-        if (sh_store.lastmessage.length < 1) { return; }
+        if (store.lastmessage.length < 1) { return; }
 
         var find = matches[1],
             repl = matches[2],
@@ -35,14 +36,12 @@ author: Colin Moller <colin@lefty.tv>
         replmsg = 's/'+find+'/'+repl+'/';
 
         var re = new RegExp(find,"g");
-        finalmsg = sh_store.lastmessage.replace(re, repl);
-        saveStorage();
+        finalmsg = store.lastmessage.replace(re, repl);
 
         resp = finalmsg + '';
 
     } else {
-        sh_store.lastmessage = msg;
-        saveStorage();
+        store.lastmessage = msg;
     }
 
     cb.call( null, to, from, resp );
