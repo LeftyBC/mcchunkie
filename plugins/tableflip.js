@@ -1,10 +1,11 @@
 (function( helper, to, from, msg, store, sh_store, cb ) {
   'use strict';
   var resp, phrases = [
-      "(ﾉಥ益ಥ）ﾉ ┻━┻",
+      "(ﾉಥ益ಥ）ﾉ彡┻━┻",
       "┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻",
       "┻━┻ ︵ ¯\(ツ)/¯ ︵ ┻━┻",
-      "(ノಠ益ಠ)ノ彡┻━┻"
+      "(ノಠ益ಠ)ノ彡┻━┻",
+      "(╯°□°）╯︵ ┻━┻"
   ];
 
   if ( msg.match( /^\@tableflip/ ) ) {
