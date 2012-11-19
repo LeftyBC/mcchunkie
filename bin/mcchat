@@ -3,7 +3,7 @@
 var redis = require( 'redis' ), 
   rclient = redis.createClient(),
   readline = require( 'readline' ),
-  prompt = 'mcchunkie> ',
+  prompt = 'LeftyBot> ',
 rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -13,6 +13,6 @@ rl.setPrompt( prompt );
 rl.prompt();
 
 rl.on( 'line', function( str ) {
-  rclient.publish( 'mcchunkie', 'mcchat^' + str );
+  rclient.publish( 'LeftyBot', 'mcchat^' + str );
   rl.prompt();
 });
