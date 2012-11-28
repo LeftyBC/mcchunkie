@@ -1,0 +1,61 @@
+(function( helper, to, from, msg, store, sh_store, cb ) {
+  'use strict';
+  var resp, phrases = [
+    "You look good in a dress. You would have looked better.",
+    "Anything else, mom? You want me to mow the lawn? Oops! I forgot, New York, No grass.",
+    "I don't DO dates. But I don't lose either, so you're on!",
+    "Never send a boy to do a woman's job.",
+    "It's in that place where I put that thing that time.",
+    "When I was a child, I spoke as a child, I understood as a child, I thought as a child, but when I became a man, I put away childish things. What? It's Corinthians one, chapter thirteen verse eleven.",
+    "Whoa! This isn't woodshop class?",
+    "We have just gotten a wake-up call from the Nintendo Generation.",
+    "I don't play well with others.",
+    "Kid, don't threaten me. There are worse things than death, and uh, I can do all of them.",
+    "FYI man, alright. You could sit at home, and do like absolutely nothing, and your name goes through like 17 computers a day. 1984? Yeah right, man. That's a typo. Orwell is here now. He's livin' large. We have no names, man. No names. We are nameless!",
+    "I hope you don't screw like you type.",
+    "There is no right and wrong. There's only fun and boring.",
+    "'God gave men brains larger than dogs so they wouldn't hump women's legs at cocktail parties.' - Ruth Libby.",
+    "You wanted to know who I am, Zero Cool? Well, let me explain the New World Order. Governments and corporations need people like you and me. We are Samurai... the Keyboard Cowboys... and all those other people who have no idea what's going on are the cattle. Moooo.",
+    "Spandex: it's a privilege, not a right.",
+    "If it isn't Leopard Boy. And the Decepticons.",
+    "Pool on the roof must have a leak.",
+    "'Blow me.' 'Thank you.'",
+    "Mess with the best, die like the rest.",
+    "Remember, hacking is more than just a crime. It's a survival trait.",
+    "Never fear, I is here.",
+    "This is the end, my friend. Thank you for calling.",
+    "Someone didn't bother reading my carefully prepared memo on commonly-used passwords. Now, then, as I so meticulously pointed out, the four most-used passwords are: love, sex, secret, and... God.",
+    "Ugh. Hard copy.",
+    "Zero Cool? Crashed fifteen hundred and seven computers in one day? Biggest crash in history, front page New York Times August 10th, 1988. I thought you was black man. YO THIS IS ZERO COOL!",
+    "Angelheaded hipsters burning for the ancient heavenly connection to the starry dynamo in the machinery of night.",
+    "I kinda feel like God.",
+    "Type \"cookie\", you idiot.",
+    "What, did your 'ma buy you a 'puter for Christmas?",
+    "Listen you guys, help yourself to anything in the fridge... Cereal has.",
+    "A million psychedelic colors.",
+    "It's got a 28 point 8 BPS modem!",
+    "Yeah.  RISC is good.",
+    "Fifteen hundred and SEVEN.",
+    "Congratulations, you just made an enemy for life.",
+    "One more dude outta you and I'mma slap the shit outta you!",
+    "Check it, Friday.",
+    "Animal.",
+    "It's root slash period workspace slash period garbage period.",
+    "Right, well my BLT drive on my computer just went AWOL, and I've got this big project due tomorrow for Mr. Kawasaki, and if I don't get it in, he's gonna ask me to commit Hari Kari...",
+    "You're in the butter zone now, baby.",
+    "Yak yak yak.  Get a job!",
+    "ACID BURN SEZ LEAVE B 4 U R EXPUNGED",
+    "Unbelievable.  A hacker!",
+    "Can this wait until both my eyes are open, please?",
+    "I know some of you kids got computers at home. But these are school property, people, and I don't want to see any gum stuck to 'em.",
+    "Can't get this in stores, man!",
+    "What are you, stoned or stupid? You don't hack a bank across state lines from your house, you'll get nailed by the FBI.",
+    "Meet Cereal Killer. As in Froot Loops? But he does know things.",
+  ];
+
+  if ( msg.match( /^\@(dade|hack|phreak|kate|libby|cereal|joey)/ ) ) {
+    resp = phrases[ helper.rand( phrases.length ) ];
+  }
+
+  cb.call( null, to, from, resp );
+});
