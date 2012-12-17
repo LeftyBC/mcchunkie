@@ -10,7 +10,8 @@
     "Hardcore crazy!",
     "Yeah, pizza.",
     "Yeah! Turtles!",
-    "SHREDDER!"
+    "SHREDDER!",
+    "COWABUNGA!"
   ];
 
   if (msg.match(/^\@tmnt/)) {
