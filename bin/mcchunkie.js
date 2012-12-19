@@ -9,6 +9,7 @@ var irc = require( 'irc' ),
   nconf = require( 'nconf' ),
   redis = require( 'redis' ),
   rclient = redis.createClient(),
+  rstore = redis.createClient(),
   pushover = require( 'pushover-notifications' ),
   helpers,
   plugins = __dirname + '/../plugins',
@@ -40,7 +41,7 @@ function loadStorage( fn ) {
   fs.readFile( storage_file, function (err, data) {
     if ( data ) {
       storage.shared = JSON.parse( data.toString() );
-      if ( fn ) { 
+      if ( fn ) {
         fn.call();
       }
     }
@@ -68,7 +69,7 @@ rclient.on( 'message', function( channel, data ) {
     .trim()
     .replace( /:$/, '' );
 
-  if ( ! str.match( 'mcchat' ) ) {  
+  if ( ! str.match( 'mcchat' ) ) {
     nconf.set( str + ':date', value );
   }
   nconf.save( function() {
@@ -89,7 +90,11 @@ rclient.on( 'message', function( channel, data ) {
 
 rclient.subscribe( args.n );
 
-helpers = { 
+rclient.on("error", function (err) {
+    console.log("error event - " + rclient.host + ":" + rclient.port + " - " + err);
+});
+
+helpers = {
   botname: args.n,
   rand: function( len ) {
     return Math.floor( Math.random() * len );
@@ -99,7 +104,7 @@ helpers = {
   }),
   pHolder: function( str, array ) {
     // lol - PHOLDER!
-    var i, l = array.length; 
+    var i, l = array.length;
     for ( i = 0; i < l; i++ ) {
       str = str.replace( '$' + parseInt( i + 1, 10 ), array[i] );
     }
@@ -121,6 +126,8 @@ helpers = {
   reds: require( 'reds' ),
   classifier: require( 'classifier' ),
   sqlite: require( 'sqlite3' ),
+  rclient: rclient,
+  rstore: rstore,
   isRelevant: function( msg ) {
     if ( msg.indexOf( this.botname ) > -1 ) {
       return true;
@@ -208,8 +215,9 @@ function processMsg( o ) {
   msg = o.msg;
 
   for ( i in running_plugins ) {
-    if ( running_plugins.hasOwnProperty( i ) ) { 
-      try { 
+    if ( running_plugins.hasOwnProperty( i ) ) {
+      //console.log("Processing message with plugin ",i);
+      try {
         running_plugins[i]( helpers, to, from, msg, storage[i], storage.shared, reply );
       } catch( e ) {
         console.log( "Error running '" + i + "'\n" + e );
@@ -218,11 +226,11 @@ function processMsg( o ) {
   }
 }
 
-client = new irc.Client( args.s, args.n, { 
-  channels: channels, 
+client = new irc.Client( args.s, args.n, {
+  channels: channels,
   debug: false,
-  userName: args.n 
-}); 
+  userName: args.n
+});
 
 client.addListener( 'error', function( err ) {
   throw err;
