@@ -12,7 +12,7 @@ var myClient = redis.createClient();
         if (match2) {
             // this is an add request
             var key = match2[1], to_add = match2[2];
-            console.log("would add",key,":",to_add);
+            console.log("Adding ",key,":",to_add);
             var keyname = 'stored_'+key;
             myClient.sadd(keyname,to_add,function(a,b) {
                 resp = "Added '"+to_add+"' to !"+key;
@@ -23,7 +23,6 @@ var myClient = redis.createClient();
         } else {
             // this is just a lookup
             var key = match[1], phrases;
-            console.log("would look up !" + key);
             var keyname = 'stored_'+key;
             myClient.srandmember(keyname,function(err,val) {
                 if (err != null) console.log(err,val);
