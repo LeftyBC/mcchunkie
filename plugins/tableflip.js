@@ -8,7 +8,7 @@
       "(╯°□°）╯︵ ┻━┻"
   ];
 
-  if ( msg.match( /^\@tableflip/ ) ) {
+  if ( msg.match( /^\@(tableflip|reflip)/ ) ) {
     resp = phrases[ helper.rand( phrases.length ) ];
   }
 
