@@ -27,11 +27,11 @@ var irc = require( 'irc' ),
 
 nconf.file( { file: storage_file } );
 
-fs.stat( 'api_keys.json', function( err, data ) {
+fs.stat( __dirname +'/../api_keys.json', function( err, data ) {
   if ( err ) {
     throw err;
   }
-  fs.readFile( 'api_keys.json', function( err, data ) {
+  fs.readFile( __dirname+'/../api_keys.json', function( err, data ) {
     tokens = JSON.parse( data );
   });
 });
@@ -136,9 +136,20 @@ helpers = {
   }
 };
 
-channels = args.c.split( ',' );
-channels.forEach( function( c ) {
-  channels[ chanCount ] = '#' + c.trim();
+//channels = args.c.split( ',' );
+channels = new Array();
+console.log('channels requested: ',args);
+args.c.forEach( function(chan) {
+  var thischan,thiskey,chans;
+
+  chans = chan.split(':'); // format is channel:key
+
+  thischan = '#' + chans[0].trim();
+  thiskey = chans[1];
+
+  channels[chanCount] = thischan + " " + thiskey;
+
+  console.log('will join channel ' + channels[chanCount]);
   chanCount++;
 });
 
@@ -233,6 +244,7 @@ client = new irc.Client( args.s, args.n, {
 });
 
 client.addListener( 'error', function( err ) {
+  console.log(err);
   throw err;
 });
 
