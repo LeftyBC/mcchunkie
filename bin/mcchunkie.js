@@ -164,6 +164,7 @@ function loadPlugin( file, ismsg ) {
           t = eval( data.toString() );
           running_messages[ n ] = t();
         } else {
+          data = "try { " + data + " } catch (e) { console.log(e.stack); }";
           running_plugins[ n ] = eval( data.toString() );
           storage[ n ] = {};
           if ( tokens[ n ] ) {
@@ -171,7 +172,7 @@ function loadPlugin( file, ismsg ) {
           }
         }
       } catch( e ) {
-        console.log( 'Syntax error in "' + file + '"\n' + e );
+        console.log( 'Syntax error in "' + file + '"\n' + e, e.stack );
       }
     }
   });
