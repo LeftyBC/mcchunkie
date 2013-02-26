@@ -2,7 +2,7 @@
   'use strict';
   var resp = "";
   if ( helper.isRelevant( msg ) ) {
-    if ( msg.match( "CSI" ) ) {
+    if ( msg.match( /CSI/i ) ) {
       resp += "( •_•)\n"
       resp += "( •_•)>⌐■-■\n"
       resp += "(⌐■_■)"
