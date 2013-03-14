@@ -2,7 +2,7 @@
   'use strict';
   var resp;
 
-  if ( msg.match( /cheese burger/i ) ) {
+  if ( msg.match( /cheese burger/i ) || msg.match( /cheeseburger/i ) ) {
     resp = "Dayum DAYum DAAAAAYUUUUUMMMMM!!!!";
   }
   if ( msg.match( /5 guys/i ) ) {
