@@ -59,6 +59,7 @@ function saveStorage( fn ) {
 loadStorage();
 
 rclient.on( 'message', function( channel, data ) {
+    console.log(data.toString());
   var o = data.toString().split( '^' ), i, l, value, msg, str;
 
   value = o[ o.length - 1 ];
