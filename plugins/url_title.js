@@ -1,3 +1,5 @@
+var S = require('string');
+
 (function( helper, to, from, msg, store, sh_store, cb ) {
   var resp;
     if ( msg.indexOf( 'http://' ) > -1 || msg.indexOf( 'https://' ) > -1 ) {
@@ -11,7 +13,7 @@
                 var titleMatch = sData.match(/<title>([^<]+)<\/title>/i);
                 var title;
                 if (titleMatch && titleMatch[1]) {
-                    title = unescape(titleMatch[1].toString().trim());
+                    title = S(titleMatch[1].toString().trim()).decodeHTMLEntities().s;
                 } else {
                     title = "(no title)";
                 }
