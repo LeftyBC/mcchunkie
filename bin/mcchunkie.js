@@ -113,7 +113,7 @@ helpers = {
   },
   httpGet: function( u, cb ) {
     u = url.parse( u );
-    http.get( u, function( res ) {
+    (u.protocol == 'https:' ? https : http).get( u, function( res ) {
       var d = [];
       res.on( 'data', function( chunk ) {
         d.push( chunk );
